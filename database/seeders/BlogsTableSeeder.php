@@ -5,16 +5,15 @@ namespace Database\Seeders;
 use App\Models\Blog;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class BlogsTableSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        $this->call(BlogsTableSeeder::class);
+        Blog::factory()->count(10)->create();
     }
 }
