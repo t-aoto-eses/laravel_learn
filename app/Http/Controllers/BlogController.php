@@ -116,4 +116,31 @@ class BlogController extends Controller
         $request->session()->flash('err_msg', 'ブログを更新しました');
         return redirect(route('blogs'));
     }
+
+    /**
+     * ブログ削除
+     * @param int $id
+     *
+     */
+    public function exeDelete($id, Request $request)
+    {
+        $blog = Blog::find($id);
+
+        if (is_null($blog)) {
+            $request->session()->flash('err_msg', 'データがありません。');
+            return redirect(route('blogs'));
+        }
+
+        DB::beginTransaction();
+        try {
+            Blog::destroy($id);
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            abort(500);
+        }
+
+        $request->session()->flash('err_msg', '記事番号：'.$id.'を削除しました。');
+        return redirect(route('blogs'));
+    }
 }
