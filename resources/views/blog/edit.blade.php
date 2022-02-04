@@ -5,8 +5,8 @@
   <div class="col-md-8 py-5 col-md-offset-2">
     <h2>ブログ編集フォーム</h2>
     <form method="POST" action="{{ route('update') }}" onSubmit="return checkSubmit()">
-    @csrf
-    <input type="hidden" name="id" value="{{ $blog->id }}">
+      @csrf
+      <input type="hidden" name="id" value="{{ $blog->id }}">
       <div class="form-group">
         <label for="title">
           タイトル
